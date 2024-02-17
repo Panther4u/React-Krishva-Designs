@@ -4,24 +4,26 @@ import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { FaSearch, FaUser, FaCaretDown, FaShoppingCart } from "react-icons/fa";
 import Flex from "../../designLayouts/Flex";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { paginationItems } from "../../../constants";
 
 const HeaderBottom = () => {
-  const products = useSelector((state) => state.orebiReducer.products);
+  // const products = useSelector((state) => state.orebiReducer.products);
   const [show, setShow] = useState(false);
   const [showUser, setShowUser] = useState(false);
   const navigate = useNavigate();
   const ref = useRef();
   useEffect(() => {
-    document.body.addEventListener("click", (e) => {
-      if (ref.current.contains(e.target)) {
-        setShow(true);
-      } else {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
         setShow(false);
       }
-    });
-  }, [show, ref]);
+    };
+    document.body.addEventListener('click', handleClickOutside);
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -42,7 +44,7 @@ const HeaderBottom = () => {
     <div className="w-full bg-[#F5F5F3] relative">
       <div className="max-w-container mx-auto">
         <Flex className="flex flex-col lg:flex-row  sm:flex-row md:flex-row items-start lg:items-center justify-between w-full px-2 py-1 lg:pb-0 h-full lg:h-24">
-          {/* <div
+          <div
             onClick={() => setShow(!show)}
             ref={ref}
             className="flex h-14 cursor-pointer items-center gap-2 text-primeColor px-1"
@@ -73,7 +75,7 @@ const HeaderBottom = () => {
                 </li>
               </motion.ul>
             )}
-          </div> */}
+          </div>
           <div className="sm:ml-4 sm:mr-4 sm:mt-0.5 relative w-full lg:w-[600px] h-[50px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-4 rounded-md">
             <input
               className="flex-1 h-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
@@ -172,3 +174,6 @@ const HeaderBottom = () => {
 };
 
 export default HeaderBottom;
+
+
+
