@@ -7,13 +7,18 @@ import { store, persistor } from "./redux/store";
 import "./index.css";
 import App from "./App";
 import Chat from "./components/Whatsapp/Whatsapp";
+import { StateProvider } from "./StateProvider";
+import reducer, { initialState } from "./reducer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <App />
-      <Chat/>
-    </PersistGate>
-  </Provider>
+  <StateProvider initialState={initialState} reducer={reducer}>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+        <Chat/>
+      </PersistGate>
+    </Provider>
+  </StateProvider>
+  
 );

@@ -22,6 +22,7 @@ import Offer from "./pages/Offer/Offer";
 import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
+import AddProduct from "./pages/AddProduct/AddProduct";
 
 
 const Layout = () => {
@@ -55,6 +56,7 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
+      <Route path="/addProduct" element={<AddProduct/>}></Route>
     </Route>
   )
 );
