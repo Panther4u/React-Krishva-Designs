@@ -2,15 +2,18 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
-const Products = require("./Products");
-const Users = require("./Users");
-const Orders = require("./Orders");
+const Users = require("./models/Users");
+const Orders = require("./models/Orders");
+const path = require('path');
+const multer = require("multer");
 
 const app = express();
 const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 app.use(cors());
+
+
 
 // MongoDB connection
 mongoose.connect("mongodb://teampanther4:dt9dRQvDp6qS08Vc@ac-2cg26ym-shard-00-00.gevdelx.mongodb.net:27017,ac-2cg26ym-shard-00-01.gevdelx.mongodb.net:27017,ac-2cg26ym-shard-00-02.gevdelx.mongodb.net:27017/?replicaSet=atlas-322bib-shard-0&ssl=true&authSource=admin", {
@@ -57,30 +60,55 @@ app.get("/api/contacts", async (req, res) => {
 
 // add product
 
-    app.post("/products/add", (req, res) => {
-        const productDetail = req.body;
-    
-        console.log("Product Detail >>>>", productDetail);
-    
-        Products.create(productDetail, (err, data) => {
-        if (err) {
-            res.status(500).send(err.message);
-            console.log(err);
-        } else {
-            res.status(201).send(data);
+    // Multer storage configuration
+    const storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+        cb(null, 'public/images');
+        },
+        filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
         }
-        });
     });
     
-    app.get("/products/get", (req, res) => {
-        Products.find((err, data) => {
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            res.status(200).send(data);
-        }
-        });
+    const upload = multer({ storage: storage });
+            
+    // Product schema and model
+    const productSchema = new mongoose.Schema({
+        title: String,
+        category: String,
+        description: String,
+        image: String,
     });
+    
+    const Product = mongoose.model('Product', productSchema);
+    
+    // Serve static files (including images)
+    app.use(express.static('public'));
+
+    // POST route to add a product
+    app.post('/products/add', upload.single('file'), (req, res) => {
+        const { title, category, description } = req.body;
+        const image = req.file.filename;
+
+        const product = new Product({ title, category, description, image });
+        product.save()
+        .then(() => {
+            // Construct the image URL relative to the server's base URL
+            const imageUrl = `${req.protocol}://${req.get('host')}/images/${image}`;
+            res.status(201).json({ message: 'Product added successfully', imageUrl });
+        })
+        .catch(err => res.status(500).json({ error: 'Error adding product' }));
+    });
+
+
+// GET route to fetch all products
+app.get('/products', (req, res) => {
+    Product.find()
+      .then(products => res.json(products))
+      .catch(err => res.status(500).send('Error fetching products'));
+  });
+    
+
     
 // API for SIGNUP
 

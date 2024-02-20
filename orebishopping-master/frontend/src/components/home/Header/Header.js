@@ -114,7 +114,7 @@ const Header = () => {
                         </motion.ul>
                       )}
                     </div>
-                    {/* <div className="mt-4">
+                    <div className="mt-4">
                       <h1
                         onClick={() => setBrand(!brand)}
                         className="flex justify-between text-base cursor-pointer items-center font-titleFont mb-2"
@@ -136,7 +136,7 @@ const Header = () => {
                           <li className="headerSedenavLi">Others</li>
                         </motion.ul>
                       )}
-                    </div> */}
+                    </div>
                   </div>
                   <span
                     onClick={() => setSidenav(false)}

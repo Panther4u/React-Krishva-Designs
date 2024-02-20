@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import BestSellers from "../../components/home/BestSellers/BestSellers";
 
+
 const Offer = () => {
   const [prevLocation] = useState("");
 

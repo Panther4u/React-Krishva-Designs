@@ -1,13 +1,13 @@
 import React from "react";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { GiReturnArrow } from "react-icons/gi";
-import { FaShoppingCart, FaWhatsapp } from "react-icons/fa";
+// import { FaShoppingCart, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineLabelImportant } from "react-icons/md";
 import Image from "../../designLayouts/Image";
-import Badge from "./Badge";
+// import Badge from "./Badge";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../../redux/orebiSlice";
+// import { addToCart } from "../../../redux/orebiSlice";
 
 
 
