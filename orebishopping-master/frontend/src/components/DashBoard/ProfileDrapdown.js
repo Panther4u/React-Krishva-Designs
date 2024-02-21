@@ -23,10 +23,10 @@ function ProfileDrapdown() {
                 </svg>
             </button>
             {isDropdownOpen && (
-                <div className="absolute right-2 index-2 mt-40 w-48 rounded-md py-1 dark:bg-gray-800 shadow bg-white ">
-                    <Link className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700" to={"/"}>Profile</Link>
-                    <Link className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700" to={"/"}>Settings</Link>
-                    <Link className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700" to={"/"}>Sign out</Link>
+                <div className="absolute right-2 index-2 mt-40 w-48 rounded-md py-1 dark:bg-gray-300 shadow bg-white">
+                    <Link className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-200" to={"/"}>Profile</Link>
+                    <Link className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-200" to={"/"}>Settings</Link>
+                    <Link className="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-200" to={"/"}>Sign out</Link>
                 </div>
             )}
         </div>

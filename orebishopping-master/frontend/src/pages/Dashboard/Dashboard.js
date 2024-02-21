@@ -12,13 +12,13 @@ function Dashboard() {
   return (
     <>
 
-    <div className="bg-gray-100 dark:bg-gray-900 dark:text-white text-gray-600 px-2 py-5 h-screen position-relative text-sm">
+    <div className="bg-gray-100  text-gray-600 px-2 py-5 h-screen position-relative text-sm">
       <SideNav/>
       <div className=" flex flex-col">
       {/* <HeaderNav/> */}
-        <div className="flex-col flex z-n position-absolute ">
+        <div className="flex-col flex position-absolute ">
       <UserDashBorad/>
-          <div className="flex flex-col  bg-white dark:bg-gray-900">
+          <div className="flex flex-col  bg-white dark:bg-gray-100 mt-3">
       {/* <ProfileBanner/> */}
             <div className="flex">
       <PaginationDashBoard/>

@@ -8,7 +8,7 @@ function Floating(){
         <div className="container ">
         <input type="checkbox" id="toggle" defaultChecked />
         <label className="button" htmlFor="toggle" />
-        <nav className="nav dark:bg-gray-800 shadow bg-white ">
+        <nav className="nav dark:bg-gray-200 shadow bg-white ">
             <ul>
             <Link to="/">About</Link>
             <Link to="/">Home</Link>

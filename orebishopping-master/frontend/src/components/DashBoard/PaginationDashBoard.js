@@ -49,12 +49,12 @@
                     </svg>
                 </button>
                 {isDropdownOpen && (
-                    <div className="absolute index-2 mt-56 left-36 w-48 rounded-md py-1 dark:bg-gray-800 shadow bg-white ">
-                            <li className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700">Blouse Design</li>
-                            <li className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700">Chudi Design</li>
-                            <li className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700">Lehenga Design</li>
-                            <li className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700">Kids Design</li>
-                            <li className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700">Others</li>
+                    <div className="absolute index-2 mt-56 left-36 w-48 rounded-md py-1 dark:bg-gray-200 shadow bg-white ">
+                            <li className="block px-4 py-2 text-gray-900 hover:bg-gray-300">Blouse Design</li>
+                            <li className="block px-4 py-2 text-gray-900 hover:bg-gray-300">Chudi Design</li>
+                            <li className="block px-4 py-2 text-gray-900 hover:bg-gray-300">Lehenga Design</li>
+                            <li className="block px-4 py-2 text-gray-900 hover:bg-gray-300">Kids Design</li>
+                            <li className="block px-4 py-2 text-gray-900 hover:bg-gray-300">Others</li>
                     </div>
                 )}
             </div>
