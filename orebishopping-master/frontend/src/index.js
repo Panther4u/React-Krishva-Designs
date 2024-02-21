@@ -6,7 +6,6 @@ import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
 import "./index.css";
 import App from "./App";
-import Chat from "./components/Whatsapp/Whatsapp";
 import { StateProvider } from "./StateProvider";
 import reducer, { initialState } from "./reducer";
 
@@ -18,7 +17,6 @@ root.render(
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <App />
-          <Chat/>
         </PersistGate>
       </Provider>
     </StateProvider>    

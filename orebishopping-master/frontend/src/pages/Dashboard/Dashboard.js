@@ -1,15 +1,17 @@
-import react from 'react'
+// import react from 'react'
 import SideNav from '../../components/DashBoard/Sidebar'
-import HeaderNav from '../../components/DashBoard/Header'
+// import HeaderNav from '../../components/DashBoard/Header'
 import UserDashBorad from '../../components/DashBoard/User'
-import ProfileBanner from '../../components/DashBoard/ProfileBanner'
+// import ProfileBanner from '../../components/DashBoard/ProfileBanner'
 import PaginationDashBoard from '../../components/DashBoard/PaginationDashBoard'
-import Table from '../../components/DashBoard/Table'
+// import Table from '../../components/DashBoard/Table'
+import Floating from '../../components/DashBoard/Floating'
 
 
 function Dashboard() {
   return (
     <>
+
     <div className="bg-gray-100 dark:bg-gray-900 dark:text-white text-gray-600 px-2 py-5 h-screen position-relative text-sm">
       <SideNav/>
       <div className=" flex flex-col">
@@ -17,9 +19,9 @@ function Dashboard() {
         <div className="flex-col flex z-n position-absolute ">
       <UserDashBorad/>
           <div className="flex flex-col  bg-white dark:bg-gray-900">
-      <ProfileBanner/>
+      {/* <ProfileBanner/> */}
             <div className="flex">
-      {/* <PaginationDashBoard/> */}
+      <PaginationDashBoard/>
       {/* <Table/> */}
               {/* <div className="flex w-full mt-5 space-x-2 justify-end">
                 <button className="inline-flex items-center h-8 w-8 justify-center text-gray-400 rounded-md shadow border border-gray-200 dark:border-gray-800 leading-none">
@@ -41,6 +43,7 @@ function Dashboard() {
           </div>
         </div>
       </div>
+      <Floating/>
     </div>
 
     
