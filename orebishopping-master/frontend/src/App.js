@@ -22,9 +22,8 @@ import Offer from "./pages/Offer/Offer";
 import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
-import AddProduct from "./pages/AddProduct/AddProduct";
+// import AddProduct from "./pages/AddProduct/AddProduct";
 import Dashboard from "./pages/Dashboard/Dashboard";
-
 
 const Layout = () => {
   return (

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { logoLight } from "../../assets/images";
+import { logo } from "../../assets/images"; 
+
+
+
 
 const SignIn = () => {
   // ============= Initial State Start here =============
@@ -11,6 +14,7 @@ const SignIn = () => {
   // ============= Error Msg Start here =================
   const [errEmail, setErrEmail] = useState("");
   const [errPassword, setErrPassword] = useState("");
+
 
   // ============= Error Msg End here ===================
   const [successMsg, setSuccessMsg] = useState("");
@@ -24,31 +28,64 @@ const SignIn = () => {
     setErrPassword("");
   };
   // ============= Event Handler End here ===============
-  const handleSignIn = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!email) {
-      setErrEmail("Enter your email");
+  
+    // Resetting error messages
+    setErrEmail("");
+    setErrPassword("");
+    setSuccessMsg("");
+  
+    if (!email || !password) {
+      if (!email) setErrEmail("Enter your email");
+      if (!password) setErrPassword("Create a password");
+      return; // Exit if validation fails
     }
-
-    if (!password) {
-      setErrPassword("Create a password");
-    }
-    // ============== Getting the value ==============
-    if (email && password) {
-      setSuccessMsg(
-        `Hello dear, Thank you for your attempt. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
-      );
-      setEmail("");
-      setPassword("");
+  
+    try {
+      const response = await fetch("http://localhost:8000/login-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Access-Control-Allow-Origin": "*", // Note: It's better to handle CORS on the server
+        },
+        body: JSON.stringify({ email, password }),
+      });
+  
+      const data = await response.json();
+      if (data.status === "ok") {
+        console.log("Login success:", data);
+        alert("Login Successfully!");
+        
+        // Store token in localStorage or handle as needed
+        localStorage.setItem("token", data.token); // Assuming the token is returned in `data.token`
+        localStorage.setItem("loggedIn", true);
+  
+        // Clear input fields after successful login
+        setEmail("");
+        setPassword("");
+  
+        // Assuming `data.user.role` contains the role of the user
+        const redirectUrl = data.user.role === "Admin" ? "/dashboard" : "/";
+        window.location.href = redirectUrl; // Redirect to the appropriate page
+      } else {
+        // Handling login failure (incorrect credentials, user not found, etc.)
+        alert(data.message || "Login failed. Please check your credentials.");
+      }
+    } catch (error) {
+      alert("An error occurred during login. Please try again later.");
     }
   };
+
+
+  
   return (
     <div className="w-full h-screen flex items-center justify-center">
       <div className="w-1/2 hidden lgl:inline-flex h-full text-white">
         <div className="w-[450px] h-full bg-primeColor px-10 flex flex-col gap-6 justify-center">
           <Link to="/">
-            <img src={logoLight} alt="logoImg" className="w-28" />
+            <img src={logo} alt="logoImg" className="w-28" />
           </Link>
           <div className="flex flex-col gap-1 -mt-1">
             <h1 className="font-titleFont text-xl font-medium">
@@ -62,7 +99,7 @@ const SignIn = () => {
             </span>
             <p className="text-base text-gray-300">
               <span className="text-white font-semibold font-titleFont">
-                Get started fast with OREBI
+                Get started fast with Krishva Designs
               </span>
               <br />
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab omnis
@@ -75,7 +112,7 @@ const SignIn = () => {
             </span>
             <p className="text-base text-gray-300">
               <span className="text-white font-semibold font-titleFont">
-                Access all OREBI services
+                Access all Krishva Designs services
               </span>
               <br />
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab omnis
@@ -98,7 +135,7 @@ const SignIn = () => {
           <div className="flex items-center justify-between mt-10">
             <Link to="/">
               <p className="text-sm font-titleFont font-semibold text-gray-300 hover:text-white cursor-pointer duration-300">
-                © OREBI
+                © Krishva Designs
               </p>
             </Link>
             <p className="text-sm font-titleFont font-semibold text-gray-300 hover:text-white cursor-pointer duration-300">
@@ -129,7 +166,7 @@ const SignIn = () => {
             </Link>
           </div>
         ) : (
-          <form className="w-full lgl:w-[450px] h-screen flex items-center justify-center">
+          <form onSubmit={handleSubmit} className="w-full lgl:w-[450px] h-screen flex items-center justify-center">
             <div className="px-6 py-4 w-full h-[90%] flex flex-col justify-center overflow-y-scroll scrollbar-thin scrollbar-thumb-primeColor">
               <h1 className="font-titleFont underline underline-offset-4 decoration-[1px] font-semibold text-3xl mdl:text-4xl mb-4">
                 Sign in
@@ -176,7 +213,7 @@ const SignIn = () => {
                 </div>
 
                 <button
-                  onClick={handleSignIn}
+                  type="submit"
                   className="bg-primeColor hover:bg-black text-gray-200 hover:text-white cursor-pointer w-full text-base font-medium h-10 rounded-md  duration-300"
                 >
                   Sign In
@@ -191,7 +228,9 @@ const SignIn = () => {
                 </p>
               </div>
             </div>
+            
           </form>
+          
         )}
       </div>
     </div>
@@ -201,3 +240,91 @@ const SignIn = () => {
 export default SignIn;
 
 
+// import React, { Component, useState } from "react";
+
+// export default function Login() {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+
+//   function handleSubmit(e) {
+//     e.preventDefault();
+
+//     console.log(email, password);
+//     fetch("http://localhost:8000/login-user", {
+//       method: "POST",
+//       crossDomain: true,
+//       headers: {
+//         "Content-Type": "application/json",
+//         Accept: "application/json",
+//         "Access-Control-Allow-Origin": "*",
+//       },
+//       body: JSON.stringify({
+//         email,
+//         password,
+//       }),
+//     })
+//       .then((res) => res.json())
+//       .then((data) => {
+//         console.log(data, "userRegister");
+//         if (data.status == "ok") {
+//           alert("login successful");
+//           window.localStorage.setItem("token", data.data);
+//           window.localStorage.setItem("loggedIn", true);
+
+//           window.location.href = "./userDetails";
+//         }
+//       });
+//   }
+
+//   return (
+//     <div className="auth-wrapper">
+//       <div className="auth-inner">
+//         <form onSubmit={handleSubmit}>
+//           <h3>Sign In</h3>
+
+//           <div className="mb-3">
+//             <label>Email address</label>
+//             <input
+//               type="email"
+//               className="form-control"
+//               placeholder="Enter email"
+//               onChange={(e) => setEmail(e.target.value)}
+//             />
+//           </div>
+
+//           <div className="mb-3">
+//             <label>Password</label>
+//             <input
+//               type="password"
+//               className="form-control"
+//               placeholder="Enter password"
+//               onChange={(e) => setPassword(e.target.value)}
+//             />
+//           </div>
+
+//           <div className="mb-3">
+//             <div className="custom-control custom-checkbox">
+//               <input
+//                 type="checkbox"
+//                 className="custom-control-input"
+//                 id="customCheck1"
+//               />
+//               <label className="custom-control-label" htmlFor="customCheck1">
+//                 Remember me
+//               </label>
+//             </div>
+//           </div>
+
+//           <div className="d-grid">
+//             <button type="submit" className="btn btn-primary">
+//               Submit
+//             </button>
+//           </div>
+//           <p className="forgot-password text-right">
+//             <a href="/signup">Sign Up</a>
+//           </p>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// }
