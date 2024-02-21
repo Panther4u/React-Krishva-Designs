@@ -10,15 +10,19 @@ import Chat from "./components/Whatsapp/Whatsapp";
 import { StateProvider } from "./StateProvider";
 import reducer, { initialState } from "./reducer";
 
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <StateProvider initialState={initialState} reducer={reducer}>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-        <Chat/>
-      </PersistGate>
-    </Provider>
-  </StateProvider>
+
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+          <Chat/>
+        </PersistGate>
+      </Provider>
+    </StateProvider>    
+
+
   
 );

@@ -36,8 +36,8 @@ export const navBarList = [
   },
   {
     _id: 1005,
-    title: "AddProduct",
-    link: "/addProduct",
+    title: "DashBoard",
+    link: "/dashboard",
   },
 ];
   
