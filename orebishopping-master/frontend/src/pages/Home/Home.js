@@ -14,7 +14,7 @@ const Home = () => {
     <div className="w-full mx-auto">
       <Banner />
       {/* <BannerBottom /> */}
-      <div className="max-w-container mx-auto px-4">
+      <div className="max-w-container mx-auto px-1">
         <Sale />
         <NewArrivals />
         <BestSellers />

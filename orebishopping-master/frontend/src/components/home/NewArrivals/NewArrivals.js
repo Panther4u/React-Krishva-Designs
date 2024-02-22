@@ -61,7 +61,7 @@ const NewArrivals = () => {
       <Heading heading="New Arrivals" />
       <div className="w-full grid sm:grid-cols-1 text-center">
         <Slider {...settings}>
-          <div className="px-2 max-w-80 max-h-80">
+          <div className="w-full grid  md:grid-cols-3 lgl:grid-cols-4 sm:grid-cols-2  xl:grid-cols-4 lg:gap-10 gap-5">
             {items.map(item => (
               <Product
               _id={item._id}

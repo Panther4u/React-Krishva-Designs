@@ -9,7 +9,7 @@ import Image from "../../designLayouts/Image";
 
 const Sale = () => {
   return (
-    <div className="py-2 mb-2 flex flex-col md:flex-row sm:flex-row items-center justify-between gap-2 lg:gap-8">
+    <div className="py-2 mb-2 flex flex-col md:flex-row sm:flex-row items-center justify-between gap-2 lg:gap-4">
       <div className="w-full sm:w-1/2 md:w-2/3 lg:w-1/2 h-full">
         <Link to="/shop">
           <Image className="h-full w-full object-cover" imgSrc={saleImgOne} />
