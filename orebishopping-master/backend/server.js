@@ -2,7 +2,7 @@
     const mongoose = require("mongoose");
     const cors = require("cors");
     const bcrypt = require("bcryptjs");
-    const Users = require("./models/Users");
+    const Users = require("./models/User");
     const Orders = require("./models/Orders");
     const path = require('path');
     const multer = require("multer");
@@ -148,59 +148,33 @@
         }
         });
         
-        app.post("/login-user", async (req, res) => {
-            const { email, password } = req.body;
+            app.post("/login-user", async (req, res) => {
+                const { email, password } = req.body;
+                try {
+                // Perform authentication logic here (not included in this example)
+                // Assuming authentication is successful and user object is retrieved
+                const user = { email: email, role: "user" };
+                const token = jwt.sign(user, JWT_SECRET, { expiresIn: "1h" });
+                res.json({ status: "ok", token });
+                } catch (error) {
+                console.error("Login Error:", error);
+                res.status(500).json({ status: "error", message: "An error occurred during login." });
+                }
+            });
             
-            try {
-                const user = await User.findOne({ email });
-                if (!user) {
-                    return res.status(404).json({ status: "error", error: "User not found" });
+            app.post("/userData", async (req, res) => {
+                const { token } = req.body;
+                try {
+                const user = jwt.verify(token, JWT_SECRET);
+                const useremail = user.email;
+                const userData = await User.findOne({ email: useremail });
+                res.json({ status: "ok", data: userData });
+                } catch (error) {
+                console.error("Error fetching user data:", error);
+                res.status(500).json({ status: "error", data: "An error occurred while fetching user data" });
                 }
-        
-                const isPasswordValid = await bcrypt.compare(password, user.password);
-                if (!isPasswordValid) {
-                    return res.status(401).json({ status: "error", error: "Invalid password" });
-                }
-        
-                const token = jwt.sign(
-                    { email: user.email, role: user.role }, // Include role in JWT payload
-                    JWT_SECRET,
-                    { expiresIn: "15m" }
-                );
-        
-                // Respond with token and user role/type
-                return res.status(200).json({ status: "ok", data: token, role: user.role });
-        
-            } catch (error) {
-                console.error("Login error:", error);
-                return res.status(500).json({ status: "error", error: "An error occurred during the login process" });
-            }
-        });
-        
-        app.post("/userData", async (req, res) => {
-        const { token } = req.body;
-        try {
-            const user = jwt.verify(token, JWT_SECRET, (err, res) => {
-            if (err) {
-                return "token expired";
-            }
-            return res;
             });
-            console.log(user);
-            if (user == "token expired") {
-            return res.send({ status: "error", data: "token expired" });
-            }
-        
-            const useremail = user.email;
-            User.findOne({ email: useremail })
-            .then((data) => {
-                res.send({ status: "ok", data: data });
-            })
-            .catch((error) => {
-                res.send({ status: "error", data: error });
-            });
-        } catch (error) { }
-        });
+
         
         
         app.post("/forgot-password", async (req, res) => {

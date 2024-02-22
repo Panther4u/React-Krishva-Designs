@@ -23,9 +23,11 @@ import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
 // import AddProduct from "./pages/AddProduct/AddProduct";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard//adminDashboard";
+import UserDetails from "./pages/UserDetails/userDetails";
+import UserHome from "./pages/UserHome/userHome";
 
-const Layout = () => {
+const  Layout = () => {
   return (
     <div>
       <Header />
@@ -56,7 +58,9 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
-      <Route path="/dashboard" element={<Dashboard/>}></Route>
+      <Route path="/adminDashboard" element={<Dashboard/>}></Route>
+      <Route path="/userDetails" element={<UserDetails/>}></Route>
+      <Route path="/userhome" element={<UserHome/>}></Route>
     </Route>
   )
 );

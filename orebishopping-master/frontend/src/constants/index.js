@@ -37,7 +37,7 @@ export const navBarList = [
   {
     _id: 1005,
     title: "DashBoard",
-    link: "/dashboard",
+    link: "/adminDashboard",
   },
 ];
   

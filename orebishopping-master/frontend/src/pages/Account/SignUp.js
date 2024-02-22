@@ -11,7 +11,7 @@ const SignUp = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
-  const [role, setrole] = useState("");
+  const [role, setRole] = useState("");
   const [secretKey, setSecretKey] = useState("");
   // Error Messages
   const [errClientName, setErrClientName] = useState("");
@@ -111,7 +111,7 @@ const SignUp = () => {
         
         if (data.status === "ok") {
           setSuccessMsg(
-            `Hello dear ${clientName}, Welcome you to OREBI Admin panel. We received your Sign up request. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
+            `Hello dear ${clientName}, Welcome you to KRISHVA DESIGNS Admin panel. We received your Sign up request. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
           );
           setClientName("");
           setEmail("");
@@ -213,37 +213,43 @@ const SignUp = () => {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="w-full lgl:w-[500px] h-screen flex items-center justify-center">
-            <div className="px-6 py-4 w-full h-[96%] flex flex-col justify-start overflow-y-scroll scrollbar-thin scrollbar-thumb-primeColor">
+            <div className="px-6 py-4 w-full h-[96%] flex flex-col justify-center overflow-y-scroll scrollbar-thin scrollbar-thumb-primeColor">
               <h1 className="font-titleFont underline underline-offset-4 decoration-[1px] font-semibold text-2xl mdl:text-3xl mb-4">
                 Create your account
               </h1>
               <div className="flex flex-col gap-3">
                 <div className="flex flex-col gap-.5">
-                  <div>
-                    Register As
+                  <div className="flex gap-2 mb-2" >
+                    <p className="font-titleFont text-base font-semibold text-gray-600 mr-4">
+                      Register As : 
+                    </p>
                     <input
                       required
                       type="radio"
                       name="role"
                       value="User"
-                      onChange={(e) => setrole(e.target.value)}
+                      className="ml-2"
+                      onChange={(e) => setRole(e.target.value)}
                     />
                     User
                     <input
                       required
                       type="radio"
                       name="role"
+                      className="ml-4"
                       value="Admin"
-                      onChange={(e) => setrole(e.target.value)}
+                      onChange={(e) => setRole(e.target.value)}
                     />
                     Admin
                   </div>
                   {role === "Admin" && (
                     <div className="mb-3">
-                      <label>Secret Key</label>
+                      <p className="font-titleFont text-base font-semibold text-gray-600">
+                        Secret Key
+                      </p>
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
                         placeholder="Secret Key"
                         onChange={(e) => setSecretKey(e.target.value)}
                       />
@@ -257,7 +263,7 @@ const SignUp = () => {
                     value={clientName}
                     className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
                     type="text"
-                    placeholder="eg. John Doe"
+                    placeholder="eg. Krishva Design"
                   />
                   {errClientName && (
                     <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
@@ -276,7 +282,7 @@ const SignUp = () => {
                     value={email}
                     className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
                     type="email"
-                    placeholder="john@workemail.com"
+                    placeholder="xxx@gmail.com"
                   />
                   {errEmail && (
                     <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
@@ -295,7 +301,7 @@ const SignUp = () => {
                     value={phone}
                     className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
                     type="text"
-                    placeholder="008801234567891"
+                    placeholder="+91 9807654321"
                   />
                   {errPhone && (
                     <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
@@ -331,7 +337,7 @@ const SignUp = () => {
                     type="checkbox"
                   />
                   <p className="text-sm text-primeColor">
-                    I agree to the OREBI{" "}
+                    I agree to the KRISHVA DESIGNS{" "}
                     <span className="text-blue-500">Terms of Service </span>and{" "}
                     <span className="text-blue-500">Privacy Policy</span>.
                   </p>
@@ -346,10 +352,10 @@ const SignUp = () => {
                 >
                   Create Account
                 </button>
-                <p className="text-sm text-center font-titleFont font-medium">
+                <p className="text-sm text-center font-titleFont font-medium text-gray-500">
                   Don't have an Account?{" "}
                   <Link to="/signin">
-                    <span className="hover:text-blue-600 duration-300">
+                    <span className="hover:text-blue-600 duration-300 text-blue-600">
                       Sign in
                     </span>
                   </Link>
@@ -387,7 +393,7 @@ export default SignUp;
 //   // const [country, setCountry] = useState("");
 //   // const [zip, setZip] = useState("");
 //   const [checked, setChecked] = useState(false);
-//   const [role, setrole] = useState("");
+//   const [role, setRole] = useState("");
 //   const [secretKey, setSecretKey] = useState("");
 //   // ============= Initial State End here ===============
 //   // ============= Error Msg Start here =================
@@ -649,7 +655,7 @@ export default SignUp;
 //                       type="radio"
 //                       name="role"
 //                       value="User"
-//                       onChange={(e) => setrole(e.target.value)}
+//                       onChange={(e) => setRole(e.target.value)}
 //                     />
 //                     User
 //                     <input
@@ -657,7 +663,7 @@ export default SignUp;
 //                       type="radio"
 //                       name="role"
 //                       value="Admin"
-//                       onChange={(e) => setrole(e.target.value)}
+//                       onChange={(e) => setRole(e.target.value)}
 //                     />
 //                     Admin
 //                   </div>

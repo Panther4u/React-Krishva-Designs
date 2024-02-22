@@ -8,7 +8,7 @@ import PaginationDashBoard from '../../components/DashBoard/PaginationDashBoard'
 import Floating from '../../components/DashBoard/Floating'
 
 
-function Dashboard() {
+function adminDashboard() {
   return (
     <>
 
@@ -51,4 +51,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default adminDashboard;

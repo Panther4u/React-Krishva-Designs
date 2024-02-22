@@ -8,6 +8,7 @@ import SpecialOffers from "../../components/home/SpecialOffers/SpecialOffers";
 import YearProduct from "../../components/home/YearProduct/YearProduct";
 
 
+
 const Home = () => {
   return (
     <div className="w-full mx-auto">
