@@ -86,22 +86,22 @@ const HeaderBottom = () => {
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="absolute top-7 right-0 z-50 bg-primeColor w-44 text-[#767676] h-auto p-4 pb-6"
+                className="absolute top-9 rounded-md z-50 dark:bg-gray-200 shadow bg-white  w-44 text-[#767676] h-auto p-4 pb-6"
               >
                 <Link to="/signin">
-                  <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                  <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
                     Login
                   </li>
                 </Link>
                 <Link onClick={() => setShowUser(false)} to="/signup">
-                  <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                  <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
                     Sign Up
                   </li>
                 </Link>
-                <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
                   Profile
                 </li>
-                <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400  hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400  hover:border-b-white hover:text-white duration-300 cursor-pointer">
                   Others
                 </li>
               </motion.ul>
@@ -115,7 +115,7 @@ const HeaderBottom = () => {
               </div>
             </Link> */}
           </div>
-          <div className="sm:ml-4 sm:mr-4 sm:mt-0.5 relative w-full lg:w-[600px] h-[50px] md-h-[45px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-4 rounded-md">
+          <div className="sm:ml-4 sm:mr-4 sm:mt-1.5 sm:mb-1.5 relative w-full lg:w-[600px] h-[50px] sm:h-[40px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-4 rounded-md">
             <input
               className="flex-1 h-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
               type="text"
@@ -147,11 +147,11 @@ const HeaderBottom = () => {
                         setSearchQuery("")
                       }
                       key={item._id}
-                      className="max-w-[600px] h-28 bg-gray-100 mb-3 flex items-center gap-3"
+                      className="max-w-[600px] h-28 px-3 rounded-md bg-gray-100 mb-3 flex items-center gap-3"
                     >
-                      <img className="w-24" src={item.img} alt="productImg" />
+                      <img className="w-24 rounded-md" src={item.img} alt="productImg" />
                       <div className="flex flex-col gap-1">
-                        <p className="font-semibold text-lg">
+                        <p className="font-semibold text-lg sm:text-sm">
                           {item.productName}
                         </p>
                         {/* <p className="text-xs mr-4">{item.des}</p> */}

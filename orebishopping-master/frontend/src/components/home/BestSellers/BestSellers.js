@@ -10,9 +10,9 @@ import {
 
 const BestSellers = () => {
   return (
-    <div className="w-full pb-8">
+    <div className="w-full pb-8 ">
       <Heading heading="Our Bestsellers" />
-      <div className="w-full grid  md:grid-cols-3 lgl:grid-cols-4 sm:grid-cols-2  xl:grid-cols-4 lg:gap-10 gap-5">
+      <div className="w-full grid  md:grid-cols-3 lgl:grid-cols-4 sm:grid-cols-2  xl:grid-cols-4 lg:gap-10 gap-5 ">
         <Product
           _id="1011"
           img={bestSellerOne}
