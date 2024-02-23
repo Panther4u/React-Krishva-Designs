@@ -22,19 +22,20 @@ function ProductList() {
 
     return (
         <div>
-            <h3 className="font-titleFont text-xl font-semibold mb-6 mt-8 underline underline-offset-4 decoration-[1px]">
+            <h3 className="font-titleFont text-xl font-semibold px-2 mb-6 mt-8 underline underline-offset-4 decoration-[1px]">
             Products on sale
             </h3>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3">
                 {/* Loop through the products array and render each product using the Product component */}
                 {products.map(product => (
                 <Product
-                    key={product._id}
-                    productName={product.title}
-                    productDescription={product.category}
-                    img={`http://localhost:8000/images/${product.image}`}
-                    // Add other product data props as needed
-                />
+                key={product._id}
+                productName={product.title}
+                price={product.price}
+                discount={product.discount}
+                img={`http://localhost:8000/images/${product.image}`}
+                // Add other product data props as needed
+            />
                 ))}
             </div>
         </div>

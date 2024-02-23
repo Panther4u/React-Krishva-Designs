@@ -8,41 +8,82 @@ function AddProduct() {
     const [id, setID] = useState('');
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
+    const [discount, setDiscount] = useState('');
     const [file, setFile] = useState(null);
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
 
 
-    const addProduct = (e) => {
+    const addProduct = async (e) => {
         e.preventDefault();
-
+    
         const formData = new FormData();
         formData.append('file', file);
         formData.append('id', id);
         formData.append('title', title);
         formData.append('price', price);
+        formData.append('discount', discount);
         formData.append('category', category);
         formData.append('description', description);
-
-        axios.post('http://localhost:8000/products/add', formData)
-        .then(() => {
+    
+        // Show loading toast message
+        const loadingToast = toast.loading('Adding product...');
+    
+        try {
+          // Set a timeout for the axios request
+          const timeoutPromise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+              reject(new Error('Timeout exceeded'));
+            }, 10000); // Adjust timeout duration as needed (e.g., 10 seconds)
+          });
+    
+          // Send the axios request and race it with the timeout promise
+          await Promise.race([axios.post('http://localhost:8000/products/add', formData), timeoutPromise]);
+    
+          // Dismiss the loading toast
+          toast.dismiss(loadingToast);
+    
+          // Show success toast message
+          toast.success('Product added successfully!');
+    
+          // Reset form fields after a delay
+          setTimeout(() => {
             setID('');
             setTitle('');
             setPrice('');
             setFile(null);
             setCategory('');
             setDescription('');
-            toast.success('Product added successfully!')
-        })
-        .catch((error) => {
+            setDiscount(0);
+          }, 3000); // Adjust the delay time as needed
+        } catch (error) {
+          // Dismiss the loading toast
+          toast.dismiss(loadingToast);
+    
+          if (error.message === 'Timeout exceeded') {
+            // Handle timeout error
+            toast.error('Request timed out. Please try again.');
+          } else {
+            // Handle other errors
             console.error('Error adding product:', error);
             toast.error('Failed to add product. Please try again.');
-        });
-    };
-
+          }
+        }
+      };
     const handleUpload = (e) => {
         setFile(e.target.files[0]);
     };
+
+    const handleDiscountChange = (e) => {
+        const discountValue = parseFloat(e.target.value);
+        // Check if the entered value is a valid number
+        if (!isNaN(discountValue)) {
+          // Limit the discount value to be between 0 and 100
+          if (discountValue >= 0 && discountValue <= 100) {
+            setDiscount(discountValue);
+          }
+        }
+      };
 
     
     return (
@@ -91,8 +132,21 @@ function AddProduct() {
                                 onChange={(e) => setPrice(e.target.value)}
                                 value={price}
                                 placeholder="Enter Price"
-                                />                          
+                                />                       
                             </div>
+
+                            <div className="flex flex-col gap-.5">
+                                <p className="font-titleFont text-base font-semibold text-gray-600">
+                                    Discount Price (%)
+                                </p>
+                                <input
+                                    type="number"
+                                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
+                                    onChange={handleDiscountChange}
+                                    value={discount}
+                                    placeholder="Enter Discount"
+                                />
+                            </div>                   
 
                             <div className="flex flex-col gap-.5">
                                 <p className="font-titleFont text-base font-semibold text-gray-600">

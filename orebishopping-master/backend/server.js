@@ -105,7 +105,11 @@
             required: true
         },
         price: {
-            type: String,
+            type: Number,
+            required: true
+        },
+        discount: {
+            type: Number,
             required: true
         }
         });
@@ -119,10 +123,10 @@
 
         // POST route to add a product
         app.post('/products/add', upload.single('file'), (req, res) => {
-            const { id, title, price, category, description } = req.body;
+            const { id, title, price, discount, category, description } = req.body;
             const image = req.file.filename;
 
-            const product = new Product({ id, title, price, category, description, image });
+            const product = new Product({ id, title, price, discount, category, description, image });
             product.save()
             .then(() => {
                 // Construct the image URL relative to the server's base URL

@@ -38,7 +38,7 @@ const Product = (props) => {
           {/* {props.badge && <img className="h-[22px] w-[40px]" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXY5eGQ4eG81bHR0aGZhczZzMXRsODRhbWVyNzVocjFjbW0wYjZzZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/J19OSJKmqCyP7Mfjt1/giphy.gif"></img>} */}
         </Link>
         <div className="w-full h-auto absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
-          <ul className="w-full h-full flex flex-col items-end justify-center gap-2 font-titleFont px-2 border-l border-r">
+          <ul className="w-full h-full flex flex-col items-end justify-center gap-2 font-titleFont px-2 border-l border-r py-2">
             {/* <li className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full">
               Compare
               <span>
@@ -89,7 +89,10 @@ const Product = (props) => {
           <h2 className="text-md sm:text-sm  font-normal hover:cursor-pointer text-gray-900 dark:text-gray-900 ">
             {props.productName}
           </h2>
-          <p className="text-[#767676] text-[14px]">Rs.{props.price}</p>
+          <div className="text-[#767676] text-[14px] flex flex-row gap-3 items-center justify-center">
+            <span className="text-[10px]"> <del>Rs. {props.price} /-</del><br /></span> 
+            <span>Rs. {props.discount} /-</span>
+          </div>
           <p className="text-[#767676] mb-2 text-[14px]">{props.color}</p>
         </div>
         <div>

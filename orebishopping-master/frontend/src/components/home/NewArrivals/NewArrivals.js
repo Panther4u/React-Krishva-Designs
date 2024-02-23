@@ -33,6 +33,14 @@ const NewArrivals = () => {
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
+        breakpoint: 2000,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
         breakpoint: 1025,
         settings: {
           slidesToShow: 4,
@@ -66,7 +74,8 @@ const NewArrivals = () => {
                 <Product
                     key={product._id}
                     productName={product.title}
-                    Price={product.price}
+                    price={product.price}
+                    discountedPrice={product.discount}
                     img={`http://localhost:8000/images/${product.image}`}
                     // Add other product data props as needed
                 />

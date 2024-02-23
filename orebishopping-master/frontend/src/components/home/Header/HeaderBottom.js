@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import { FaSearch, FaUser, FaCaretDown, FaShoppingCart } from "react-icons/fa";
+// import { HiOutlineMenuAlt4 } from "react-icons/hi";
+import { FaSearch, FaUser, FaCaretDown } from "react-icons/fa";
 import Flex from "../../designLayouts/Flex";
 import { Link, useNavigate } from "react-router-dom";
 // import { useSelector } from "react-redux";
@@ -43,7 +43,7 @@ const HeaderBottom = () => {
   return (
     <div className="w-full bg-[#F5F5F3] relative">
       <div className="max-w-container mx-auto">
-        <Flex className="flex flex-col lg:flex-row  sm:flex-row md:flex-row items-start lg:items-center lg:px-10 justify-between w-full px-2 lg:pb-0 h-full lg:h-20 ">
+        <Flex className="flex flex-col lg:flex-row  sm:flex-row md:flex-row items-start lg:items-center lg:px-10 justify-between w-full  lg:pb-0 h-full lg:h-20 ">
           {/* <div
             onClick={() => setShow(!show)}
             ref={ref}
@@ -76,45 +76,6 @@ const HeaderBottom = () => {
               </motion.ul>
             )}
           </div> */}
-          <div className="flex sm:mt-4 lg:mt-0 items-center  cursor-pointer ml-3 mr-2 relative">
-            <div onClick={() => setShowUser(!showUser)} className="flex">
-              <FaUser />
-              <FaCaretDown />
-            </div>
-            {showUser && (
-              <motion.ul
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="absolute top-9 rounded-md z-50 dark:bg-gray-200 shadow bg-white  w-44 text-[#767676] h-auto p-4 pb-6"
-              >
-                <Link to="/signin">
-                  <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                    Login
-                  </li>
-                </Link>
-                <Link onClick={() => setShowUser(false)} to="/signup">
-                  <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                    Sign Up
-                  </li>
-                </Link>
-                <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                  Profile
-                </li>
-                <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400  hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                  Others
-                </li>
-              </motion.ul>
-            )}
-            {/* <Link to="/cart">
-              <div className="relative">
-                <FaShoppingCart />
-                <span className="absolute font-titleFont top-3 -right-2 text-xs w-4 h-4 flex items-center justify-center rounded-full bg-primeColor text-white">
-                  {products.length > 0 ? products.length : 0}
-                </span>
-              </div>
-            </Link> */}
-          </div>
           <div className="sm:ml-4 sm:mr-4 sm:mt-1.5 sm:mb-1.5 relative w-full lg:w-[600px] h-[50px] sm:h-[40px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-4 rounded-md">
             <input
               className="flex-1 h-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
@@ -166,6 +127,45 @@ const HeaderBottom = () => {
                   ))}
               </div>
             )}
+          </div>
+          <div className="flex sm:mt-4 lg:mt-0 items-center  cursor-pointer ml-3 mr-2 relative">
+            <div onClick={() => setShowUser(!showUser)} className="flex">
+              <FaUser />
+              <FaCaretDown />
+            </div>
+            {showUser && (
+              <motion.ul
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="absolute top-9 rounded-md z-50 dark:bg-gray-200 shadow bg-white  w-44 text-[#767676] h-auto p-4 pb-6 right-0"
+              >
+                <Link to="/signin">
+                  <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                    Login
+                  </li>
+                </Link>
+                <Link onClick={() => setShowUser(false)} to="/signup">
+                  <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                    Sign Up
+                  </li>
+                </Link>
+                <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                  Profile
+                </li>
+                <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400  hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                  Others
+                </li>
+              </motion.ul>
+            )}
+            {/* <Link to="/cart">
+              <div className="relative">
+                <FaShoppingCart />
+                <span className="absolute font-titleFont top-3 -right-2 text-xs w-4 h-4 flex items-center justify-center rounded-full bg-primeColor text-white">
+                  {products.length > 0 ? products.length : 0}
+                </span>
+              </div>
+            </Link> */}
           </div>
         </Flex>
       </div>
