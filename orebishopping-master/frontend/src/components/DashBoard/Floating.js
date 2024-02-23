@@ -10,10 +10,10 @@ function Floating(){
         <label className="button" htmlFor="toggle" />
         <nav className="nav dark:bg-gray-200 shadow bg-white ">
             <ul>
-            <Link to="/">About</Link>
-            <Link to="/">Home</Link>
-            <Link to="/">Hire Me</Link>
-            <Link to="/">Subscribe</Link>
+            <Link to="/adminDashboard">DashBoard</Link>
+            <Link to="/addproduct">AddProduct</Link>
+            <Link to="">Hire Me</Link>
+            <Link to="">Subscribe</Link>
             </ul>
         </nav>
         </div>

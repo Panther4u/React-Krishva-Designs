@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import ProfileDrapdown from './ProfileDrapdown';
+import { Link } from 'react-router-dom';
 // Ensure Bootstrap CSS is imported in your project. 
 // This can be done in your index.js or App.js file, or in the HTML.
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,16 +20,21 @@ function SideNav() {
         {/* Menu content */}
             <div className="flex items-center text-gray-400  absolute ">
               <button className="block px-3.5 py-2 text-sm text-gray-100 hover:bg-gray-300 h-10 w-12 dark:text-gray-500 rounded-md flex-row items-center justify-center">
-                <svg viewBox="0 0 24 24" className="h-5" stroke="currentColor" strokeWidth={2} fill="none" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
+                <Link to={"/adminDashboard"}>
+                  <svg viewBox="0 0 24 24" className="h-5" stroke="currentColor" strokeWidth={2} fill="none" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>                
+                </Link>
+
               </button>
               <button className="block px-3.5 py-2 text-sm text-gray-100 hover:bg-gray-300 h-10 w-12 dark:text-gray-500 rounded-md flex-row items-center justify-center">
-                <svg viewBox="0 0 24 24" className="h-5" stroke="currentColor" strokeWidth={2} fill="none" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x={2} y={7} width={20} height={14} rx={2} ry={2} />
-                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                </svg>
+                <Link to={"/addproduct"}>
+                  <svg viewBox="0 0 24 24" className="h-5" stroke="currentColor" strokeWidth={2} fill="none" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x={2} y={7} width={20} height={14} rx={2} ry={2} />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                  </svg>                
+                </Link>
               </button>
               <button className=" block px-3.5 py-2 text-sm text-gray-100 hover:bg-gray-300 h-10 w-12 dark:text-gray-500 rounded-md flex-row items-center justify-center">
                 <svg viewBox="0 0 24 24" className="h-5" stroke="currentColor" strokeWidth={2} fill="none" strokeLinecap="round" strokeLinejoin="round">

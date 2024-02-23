@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Contact = () => {
   const location = useLocation();
@@ -47,18 +48,46 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // Show loading toast while submitting the form
+    const loadingToast = toast.loading("Submitting...");
+  
     try {
       const response = await axios.post("http://localhost:8000/api/contacts", {
         clientName,
         email,
         messages,
       });
+  
+      // Dismiss the loading toast after 1 second
+      setTimeout(() => {
+        toast.dismiss(loadingToast);
+  
+        // Show success toast message after 500 milliseconds
+        const successToast = toast.success(`Thank you dear ${clientName}, Your message has been received successfully. Further details will be sent to you by email at ${email}.`);
+  
+        // Dismiss the success toast after 3 seconds
+        setTimeout(() => {
+          toast.dismiss(successToast);
+        }, 3000);
+
+        setClientName("");
+        setEmail("");
+        setMessages("");
+        
+      }, 2500);
+  
+      // Add the new contact to the contacts list
       setContacts([...contacts, response.data]);
-      setSuccessMsg(
-        `Thank you dear ${clientName}, Your message has been received successfully. Further details will be sent to you by email at ${email}.`
-      );
+
     } catch (error) {
+      // Dismiss the loading toast if an error occurs
+      toast.dismiss(loadingToast);
+  
+      // Log and handle the error
       console.error("Error adding contact:", error);
+      // You can also show an error toast message here if needed
+      toast.error("An error occurred while submitting the form. Please try again later.");
     }
   };
 

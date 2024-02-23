@@ -1,26 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import Slider from "react-slick";
 import Heading from "../Products/Heading";
 import Product from "../Products/Product";
-// import {
-//   newArrOne,
-//   newArrTwo,
-//   newArrThree,
-//   newArrFour,
-// } from "../../../assets/images/index";
 import SampleNextArrow from "./SampleNextArrow";
 import SamplePrevArrow from "./SamplePrevArrow";
 import axios from "axios";
 
 const NewArrivals = () => {
-  const [items, setItems] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/v1/products")
-      .then(response => setItems(response.data))
-      .catch(error => console.error(error));
-  }, []);
+      // Function to fetch products from the backend
+      const fetchProducts = async () => {
+      try {
+          const response = await axios.get('http://localhost:8000/products');
+          setProducts(response.data);
+      } catch (error) {
+          console.error('Error fetching products:', error);
+      }
+      };
 
+      // Call the fetchProducts function when the component mounts
+      fetchProducts();
+  }, []); // Empty dependency array ensures the effect runs only once after the initial render
 
   const settings = {
     infinite: true,
@@ -33,7 +35,7 @@ const NewArrivals = () => {
       {
         breakpoint: 1025,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
           slidesToScroll: 1,
           infinite: true,
         },
@@ -41,15 +43,15 @@ const NewArrivals = () => {
       {
         breakpoint: 769,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 3,
+          slidesToScroll: 1,
           infinite: true,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
         },
@@ -57,24 +59,19 @@ const NewArrivals = () => {
     ],
   };
   return (
-    <div className="w-full pb-10 pt-5">
+    <div className="w-full">
       <Heading heading="New Arrivals" />
-      <div className="w-full grid sm:grid-cols-1 text-center">
-        <Slider {...settings}>
-          <div className="w-full grid  md:grid-cols-3 lgl:grid-cols-4 sm:grid-cols-2  xl:grid-cols-4 lg:gap-10 gap-5">
-            {items.map(item => (
-              <Product
-              _id={item._id}
-              img={item.img[0]}
-              badge={true}
-              des={item.des}
-              />
-            ))}
-          </div>
-
-        </Slider>
-      </div>
-
+      <Slider {...settings}>
+        {products.map(product => (
+                <Product
+                    key={product._id}
+                    productName={product.title}
+                    Price={product.price}
+                    img={`http://localhost:8000/images/${product.image}`}
+                    // Add other product data props as needed
+                />
+        ))}
+      </Slider>
     </div>
   );
 };

@@ -80,26 +80,49 @@
         });
         
         const upload = multer({ storage: storage });
-                
+        
         // Product schema and model
         const productSchema = new mongoose.Schema({
-            title: String,
-            category: String,
-            description: String,
-            image: String,
+        id: {
+            type: Number,
+            required: true,
+            unique: true
+        },
+        title: {
+            type: String,
+            required: true
+        },
+        category: {
+            type: String,
+            required: true
+        },
+        description: {
+            type: String,
+            required: true
+        },
+        image: {
+            type: String,
+            required: true
+        },
+        price: {
+            type: String,
+            required: true
+        }
         });
-        
-        const Product = mongoose.model('Product', productSchema);
-        
+
+        Product = mongoose.model("Product", productSchema);
+
+
+
         // Serve static files (including images)
         app.use(express.static('public'));
 
         // POST route to add a product
         app.post('/products/add', upload.single('file'), (req, res) => {
-            const { title, category, description } = req.body;
+            const { id, title, price, category, description } = req.body;
             const image = req.file.filename;
 
-            const product = new Product({ title, category, description, image });
+            const product = new Product({ id, title, price, category, description, image });
             product.save()
             .then(() => {
                 // Construct the image URL relative to the server's base URL
@@ -110,12 +133,22 @@
         });
 
 
-    // GET route to fetch all products
-    app.get('/products', (req, res) => {
-        Product.find()
-        .then(products => res.json(products))
-        .catch(err => res.status(500).send('Error fetching products'));
-    });
+        // Express route handler to fetch products
+        app.get('/products', (req, res) => {
+            // Query the database or perform any necessary operations to fetch products
+            Product.find()
+            .then(products => {
+                // Return JSON response with products
+                res.status(200).json(products);
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+                // Return JSON error response
+                res.status(500).json({ error: 'Error fetching products' });
+            });
+        });
+
+                
         
 
         

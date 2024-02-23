@@ -12,7 +12,7 @@ const SpecialOffers = () => {
   return (
     <div className="w-full pb-20">
       <Heading heading="Special Offers" />
-      <div className="w-full grid  md:grid-cols-3 lg:gap-10 lg:grid-cols-4 sm:grid-cols-2  xl:grid-cols-4 gap-5">
+      <div className="w-full grid  md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2  xl:grid-cols-4 ">
         <Product
           _id="1101"
           img={spfOne}

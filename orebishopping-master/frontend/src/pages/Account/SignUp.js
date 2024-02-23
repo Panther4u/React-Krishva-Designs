@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { logo } from "../../assets/images";
 import { BsCheckCircleFill } from "react-icons/bs";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   // Initial State
@@ -49,16 +50,16 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+  
     if (checked) {
       // Validate input fields
       let isError = false;
-      
+  
       if (!clientName) {
         setErrClientName("Enter your name");
         isError = true;
       }
-      
+  
       if (!email) {
         setErrEmail("Enter your email");
         isError = true;
@@ -66,12 +67,12 @@ const SignUp = () => {
         setErrEmail("Enter a Valid email");
         isError = true;
       }
-      
+  
       if (!phone) {
         setErrPhone("Enter your phone number");
         isError = true;
       }
-      
+  
       if (!password) {
         setErrPassword("Create a password");
         isError = true;
@@ -79,18 +80,21 @@ const SignUp = () => {
         setErrPassword("Passwords must be at least 6 characters");
         isError = true;
       }
-      
+  
       if (isError) {
         return;
       }
-      
+  
       // If no errors, proceed with registration
       try {
         if (role === "Admin" && secretKey !== "KaviNivi") {
           alert("Invalid Admin");
           return;
         }
-        
+  
+        // Show loading toast while sending registration request
+        const loadingToast = toast.loading("Loading...");
+  
         const response = await fetch("http://localhost:8000/register", {
           method: "POST",
           crossDomain: true,
@@ -106,24 +110,34 @@ const SignUp = () => {
             role,
           }),
         });
-        
+  
         const data = await response.json();
-        
+  
         if (data.status === "ok") {
-          setSuccessMsg(
-            `Hello dear ${clientName}, Welcome you to KRISHVA DESIGNS Admin panel. We received your Sign up request. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
-          );
-          setClientName("");
-          setEmail("");
-          setPhone("");
-          setPassword("");
-          alert("Registration Successful");
+          // Dismiss the loading toast after a delay
+          setTimeout(() => {
+            toast.dismiss(loadingToast);
+  
+            // Show success message
+            toast.success("Registration successful!");
+  
+            // Clear form fields
+            setClientName("");
+            setEmail("");
+            setPhone("");
+            setPassword("");
+          }, 3000); // Delay in milliseconds before displaying success message
         } else {
-          alert("Something went wrong");
+          // Dismiss the loading toast
+          toast.dismiss(loadingToast);
+  
+          // Display error message if registration fails
+          toast.error("Registration failed. Please try again later.");
         }
       } catch (error) {
+        // Dismiss the loading toast
         console.error("Error:", error);
-        alert("Something went wrong");
+        toast.error("An error occurred during registration. Please try again later.");
       }
     }
   };

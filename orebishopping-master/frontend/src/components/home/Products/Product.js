@@ -1,6 +1,6 @@
 import React from "react";
 import { BsSuitHeartFill } from "react-icons/bs";
-import { GiReturnArrow } from "react-icons/gi";
+// import { GiReturnArrow } from "react-icons/gi";
 // import { FaShoppingCart, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineLabelImportant } from "react-icons/md";
 import Image from "../../designLayouts/Image";
@@ -30,7 +30,7 @@ const Product = (props) => {
   };
   return (
     <div className="w-full relative group ">
-      <div className="max-w-80 max-h-80 relative overflow-y-hidden rounded-md">
+      <div className="max-w-80 max-h-80 relative overflow-y-hidden rounded-md m-2  mb-0">
         <div>
           <Image className="w-full h-full" imgSrc={props.img} />
         </div>
@@ -84,7 +84,7 @@ const Product = (props) => {
           </ul>
         </div>
       </div>
-      <div className="max-w-80 mt-3 flex flex-col  gap-1 items-center justify-center border-[1px] rounded-md border-t-0 px-2">
+      <div className="max-w-80 mt-3 flex flex-col  gap-1 items-center justify-center  rounded-md border-t-0 px-2">
         <div className="flex items-center justify-center gap-1 font-titleFont sm:flex-col">
           <h2 className="text-md sm:text-sm  font-normal hover:cursor-pointer text-gray-900 dark:text-gray-900 ">
             {props.productName}

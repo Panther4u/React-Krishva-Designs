@@ -26,6 +26,7 @@ import Shop from "./pages/Shop/Shop";
 import Dashboard from "./pages/Dashboard//adminDashboard";
 import UserDetails from "./pages/UserDetails/userDetails";
 import UserHome from "./pages/UserHome/userHome";
+import AddProduct from "./pages/AddProduct/AddProduct";
 
 const  Layout = () => {
   return (
@@ -61,6 +62,7 @@ const router = createBrowserRouter(
       <Route path="/adminDashboard" element={<Dashboard/>}></Route>
       <Route path="/userDetails" element={<UserDetails/>}></Route>
       <Route path="/userhome" element={<UserHome/>}></Route>
+      <Route path="/addproduct" element={<AddProduct/>}></Route>
     </Route>
   )
 );

@@ -22,7 +22,7 @@ function ProductList() {
 
     return (
         <div>
-            <h3 className="font-titleFont text-xl font-semibold mb-6 underline underline-offset-4 decoration-[1px]">
+            <h3 className="font-titleFont text-xl font-semibold mb-6 mt-8 underline underline-offset-4 decoration-[1px]">
             Products on sale
             </h3>
             <div className="grid grid-cols-3 gap-4">

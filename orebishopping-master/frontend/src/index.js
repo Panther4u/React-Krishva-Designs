@@ -8,6 +8,7 @@ import "./index.css";
 import App from "./App";
 import { StateProvider } from "./StateProvider";
 import reducer, { initialState } from "./reducer";
+import { Toaster } from "react-hot-toast";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -17,6 +18,7 @@ root.render(
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <App />
+          <Toaster/>
         </PersistGate>
       </Provider>
     </StateProvider>    

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { logo } from "../../assets/images";
 import { BsCheckCircleFill } from "react-icons/bs";
+import toast from "react-hot-toast";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -21,18 +22,19 @@ const SignIn = () => {
     setErrPassword("");
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrEmail("");
     setErrPassword("");
     setSuccessMsg("");
-
+  
     if (!email || !password) {
       if (!email) setErrEmail("Enter your email");
       if (!password) setErrPassword("Create a password");
       return;
     }
-
+  
     try {
       const response = await fetch("http://localhost:8000/login-user", {
         method: "POST",
@@ -42,24 +44,40 @@ const SignIn = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
       const data = await response.json();
+  
       if (data.status === "ok") {
-        alert("Login successful");
-        window.localStorage.setItem("token", data.token);
-        window.localStorage.setItem("loggedIn", true);
-        window.location.href = "/userDetails";
+        // Show loading toast while fetching data
+        const loadingToast = toast.loading("Loading...");
+  
+        setTimeout(() => {
+          // Dismiss the loading toast
+          toast.dismiss(loadingToast);
+  
+          // Show success message with user's name
+          toast.success(`Login successful! Welcome`);
+  
+          // Set localStorage items
+          window.localStorage.setItem("token", data.token);
+          window.localStorage.setItem("loggedIn", true);
+  
+          // Redirect to UserDetails page after a short delay
+          setTimeout(() => {
+            window.location.href = "/userDetails";
+          }, 2000);
+        }, 3000); // Simulated delay for fetching data
       } else {
-        alert(data.message || "Login failed. Please check your credentials.");
+        // Display error message if login fails
+        toast.error(data.message || "Login failed. Please check your credentials.");
       }
     } catch (error) {
+      // Display error message if an error occurs during login
       console.error("Login Error:", error);
-      alert("An error occurred during login. Please try again later.");
+      toast.error("An error occurred during login. Please try again later.");
     }
   };
   
-
-
   return (
     <div className="w-full h-screen flex items-center justify-center">
       <div className="w-1/2 hidden lgl:inline-flex h-full text-white">
@@ -144,7 +162,7 @@ const SignIn = () => {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="w-full lgl:w-[450px] h-screen flex items-center justify-center">
-            <div className="px-6 py-4 w-full h-[90%] flex flex-col justify-center overflow-y-scroll scrollbar-thin scrollbar-thumb-primeColor">
+            <div className="px-6 py-4 w-full lgl:w-[550px] md:w-[480px]  sm:w-[450px] flex flex-col justify-center overflow-y-scroll scrollbar-thin scrollbar-thumb-primeColor">
               <h1 className="font-titleFont underline underline-offset-4 decoration-[1px] font-semibold text-3xl mdl:text-4xl mb-4">
                 Sign in
               </h1>
