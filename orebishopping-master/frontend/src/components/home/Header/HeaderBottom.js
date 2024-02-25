@@ -41,7 +41,7 @@ const HeaderBottom = () => {
   }, [searchQuery]);
 
   return (
-    <div className="w-full bg-[#F5F5F3] relative">
+    <div className="w-full bg-white relative">
       <div className="max-w-container mx-auto">
         <Flex className="flex flex-col lg:flex-row  sm:flex-row md:flex-row items-start lg:items-center lg:px-10 justify-between w-full  lg:pb-0 h-full lg:h-20 ">
           {/* <div
@@ -60,23 +60,23 @@ const HeaderBottom = () => {
                 className="absolute top-16 mt-2 z-50 bg-primeColor w-auto text-[#767676] h-auto p-4 pb-6"
               >
                 <Link to="/offer">
-                  <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                  <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-gray-400 hover:text-gray-400 duration-300 cursor-pointer">
                     Blouse Design
                   </li>
                 </Link>
-                <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-gray-400 hover:text-gray-400 duration-300 cursor-pointer">
                   Chudi Design
                 </li>
-                <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-gray-400 hover:text-gray-400 duration-300 cursor-pointer">
                   Lehenga Design
                 </li>
-                <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-gray-400 hover:text-gray-400 duration-300 cursor-pointer">
                   Kids Design
                 </li>
               </motion.ul>
             )}
           </div> */}
-          <div className="sm:ml-4 sm:mr-4 sm:mt-1.5 sm:mb-1.5 relative w-full lg:w-[600px] h-[50px] sm:h-[40px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-4 rounded-md">
+          <div className="sm:ml-4 sm:mr-4 sm:mt-1.5 sm:mb-1.5 relative w-full lg:w-[600px] h-[50px] sm:h-[40px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-4 rounded-md shadow-md">
             <input
               className="flex-1 h-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
               type="text"
@@ -128,7 +128,7 @@ const HeaderBottom = () => {
               </div>
             )}
           </div>
-          <div className="flex sm:mt-4 lg:mt-0 items-center  cursor-pointer ml-3 mr-2 relative">
+          <div className="flex sm:mt-4 lg:mt-0 items-center  cursor-pointer ml-3 mr-2 relative ">
             <div onClick={() => setShowUser(!showUser)} className="flex">
               <FaUser />
               <FaCaretDown />
@@ -138,22 +138,22 @@ const HeaderBottom = () => {
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="absolute top-9 rounded-md z-50 dark:bg-gray-200 shadow bg-white  w-44 text-[#767676] h-auto p-4 pb-6 right-0"
+                className="absolute top-9 rounded-md z-50  shadow-xl w-44 text-black h-auto p-4 pb-6 right-0 bg-gray-100"
               >
                 <Link to="/signin">
-                  <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                  <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-200 hover:border-b-gray-400 hover:text-gray-400 duration-300 cursor-pointer">
                     Login
                   </li>
                 </Link>
                 <Link onClick={() => setShowUser(false)} to="/signup">
-                  <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                  <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-200 hover:border-b-gray-400 hover:text-gray-400 duration-300 cursor-pointer">
                     Sign Up
                   </li>
                 </Link>
-                <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-200 hover:border-b-gray-400 hover:text-gray-400 duration-300 cursor-pointer">
                   Profile
                 </li>
-                <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-400  hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                <li className="text-gray-600 px-4 py-1 border-b-[1px] border-b-gray-200  hover:border-b-gray-400 hover:text-gray-400 duration-300 cursor-pointer">
                   Others
                 </li>
               </motion.ul>

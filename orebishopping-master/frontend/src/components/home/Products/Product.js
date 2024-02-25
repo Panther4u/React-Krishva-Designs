@@ -29,8 +29,8 @@ const Product = (props) => {
     });
   };
   return (
-    <div className="w-full relative group ">
-      <div className="max-w-80 max-h-80 relative overflow-y-hidden rounded-md m-2  mb-0">
+    <div className="w-full relative group  ">
+      <div className="max-w-80 max-h-80 relative overflow-y-hidden rounded-md shadow-md mb-0 m-1">
         <div>
           <Image className="w-full h-full" imgSrc={props.img} />
         </div>

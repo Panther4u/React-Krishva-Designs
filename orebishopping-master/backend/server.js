@@ -7,6 +7,7 @@
     const path = require('path');
     const multer = require("multer");
     const user = require("./models/userDetails");
+    const productsRoutes = require('./routes/products');
 
     const app = express();
     const PORT = process.env.PORT || 8000;
@@ -152,6 +153,10 @@
             });
         });
 
+
+
+        // Routes
+        app.use('/products', productsRoutes);
                 
         
 
