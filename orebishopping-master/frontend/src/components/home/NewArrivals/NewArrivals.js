@@ -70,12 +70,12 @@ const NewArrivals = () => {
     <div className="w-full">
       <Heading heading="New Arrivals" />
       <Slider {...settings}>
-        {products.map(product => (
+      {products.map(product => (
                 <Product
                     key={product._id}
                     productName={product.title}
                     price={product.price}
-                    discountedPrice={product.discount}
+                    discount={product.discount}
                     img={`http://localhost:8000/images/${product.image}`}
                     // Add other product data props as needed
                 />

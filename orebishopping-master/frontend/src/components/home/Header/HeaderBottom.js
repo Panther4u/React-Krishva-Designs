@@ -41,7 +41,7 @@ const HeaderBottom = () => {
   }, [searchQuery]);
 
   return (
-    <div className="w-full bg-white relative">
+    <div className="w-full bg-white relative mt-2">
       <div className="max-w-container mx-auto">
         <Flex className="flex flex-col lg:flex-row  sm:flex-row md:flex-row items-start lg:items-center lg:px-10 justify-between w-full  lg:pb-0 h-full lg:h-20 ">
           {/* <div
@@ -76,7 +76,7 @@ const HeaderBottom = () => {
               </motion.ul>
             )}
           </div> */}
-          <div className="sm:ml-4 sm:mr-4 sm:mt-1.5 sm:mb-1.5 relative w-full lg:w-[600px] h-[50px] sm:h-[40px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-4 rounded-md shadow-md">
+          <div className="sm:ml-4 sm:mr-4 sm:mt-1.5 sm:mb-1.5 relative w-full lg:w-[600px] h-[50px] sm:h-[40px] text-base text-primeColor bg-white flex items-center justify-between px-4 rounded-md shadow-md">
             <input
               className="flex-1 h-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
               type="text"

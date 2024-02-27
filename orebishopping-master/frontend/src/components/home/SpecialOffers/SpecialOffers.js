@@ -12,7 +12,7 @@ const SpecialOffers = () => {
   return (
     <div className="w-full pb-20">
       <Heading heading="Special Offers" />
-      <div className="w-full grid  md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2  xl:grid-cols-4 ">
+      {/* <div className="w-full grid  md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2  xl:grid-cols-4 ">
         <Product
           _id="1101"
           img={spfOne}
@@ -49,7 +49,7 @@ const SpecialOffers = () => {
           badge= {true}
           des= "Beautiful pattu pavadai stitching Work . We design awesome pattu pavadai dress stitching work in your dress material. We do the same design on your preferred material, either we buy or you can provide your pattu pavadai dress material You want any change in the colors or design? No Issues, Just whatsapp. We are call you back to confirm the design details. You shall discuss the color changes or any specific designs changes. Then We shall confirm the design and cost for that before we schedule for pickup."
         />
-      </div>
+      </div> */}
     </div>
   );
 };

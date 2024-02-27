@@ -83,15 +83,16 @@ const ProductBanner = ({ itemsPerPageFromBanner }) => {
         {loading ? (
           <div>Loading...</div>
         ) : (
-          products.map(product => (
-              <Product
-                key={product._id}
-                productName={product.title}
-                price={product.price}
-                discountedPrice={product.discount}
-                img={`http://localhost:8000/images/${product.image}`}
-              />
-          ))
+              products.map(product => (
+                <Product
+                    key={product._id}
+                    productName={product.title}
+                    price={product.price}
+                    discount={product.discount}
+                    img={`http://localhost:8000/images/${product.image}`}
+                    // Add other product data props as needed
+                />
+        ))
         )}
       </div>
 
