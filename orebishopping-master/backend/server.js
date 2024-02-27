@@ -85,7 +85,7 @@
         // Product schema and model
         const productSchema = new mongoose.Schema({
         id: {
-            type: Number,
+            type: String,
             required: true,
             unique: true
         },

@@ -10,8 +10,8 @@ const ProductInfo = ({ productInfo }) => {
       <h2 className="text-4xl font-semibold">{productInfo.productName}</h2>
       <p className="text-xl font-semibold">{productInfo.category}</p>
       <p className="text-lg font-semibold">${productInfo.price}</p>
-      <p className="text-xl font-semibold">${productInfo.color}</p>
-      <p className="text-base text-gray-600">{productInfo.des}</p>
+      <p className="text-xl font-semibold">${productInfo.discount}</p>
+      <p className="text-base text-gray-600">{productInfo.description}</p>
       {/* <p className="text-sm">Be the first to leave a review.</p> */}
       {/* <p className="font-medium text-lg">
         <span className="font-normal">Colors:</span> {productInfo.color}

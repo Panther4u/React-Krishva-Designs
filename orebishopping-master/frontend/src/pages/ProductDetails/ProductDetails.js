@@ -7,12 +7,14 @@ import ProductsOnSale from "../../components/pageProps/productDetails/ProductsOn
 const ProductDetails = () => {
   const location = useLocation();
   const [prevLocation, setPrevLocation] = useState("");
-  const [productInfo, setProductInfo] = useState([]);
+  const [productInfo, setProductInfo] = useState(null);
 
   useEffect(() => {
-    setProductInfo(location.state.item);
+    if(location.state && location.state.item){
+      setProductInfo(location.state.item);
+    }
     setPrevLocation(location.pathname);
-  }, [location, productInfo]);
+  }, [location]);
 
   return (
     <div className="w-full mx-auto border-b-[1px] border-b-gray-300 ">
@@ -25,14 +27,13 @@ const ProductDetails = () => {
             <ProductsOnSale />
           </div> */}
           <div className="h-full xl:col-span-1">
-            <img
+            {productInfo && (<img
               className=" w-[1000px] h-full object-cover rounded-md"
               src={productInfo.img}
-              alt={productInfo.img}
-            />
+            />)}
           </div>
           <div className="h-full w-full  flex flex-col gap-6 justify-center md:mt-4 sm:mt-4">
-            <ProductInfo productInfo={productInfo} />
+            {productInfo && <ProductInfo productInfo={productInfo} />}
           </div>
         </div>
         <div className="w-full mt-10">
