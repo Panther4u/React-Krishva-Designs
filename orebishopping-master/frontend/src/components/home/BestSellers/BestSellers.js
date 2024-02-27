@@ -1,18 +1,18 @@
 import React from "react";
 import Heading from "../Products/Heading";
-import Product from "../Products/Product";
-import {
-  bestSellerOne,
-  bestSellerTwo,
-  bestSellerThree,
-  bestSellerFour,
-} from "../../../assets/images/index";
+// import Product from "../Products/Product";
+// import {
+//   bestSellerOne,
+//   bestSellerTwo,
+//   bestSellerThree,
+//   bestSellerFour,
+// } from "../../../assets/images/index";
 
 const BestSellers = () => {
   return (
     <div className="w-full pb-8 ">
       <Heading heading="Our Bestsellers" />
-      <div className="w-full grid  md:grid-cols-3 lgl:grid-cols-4 sm:grid-cols-2  xl:grid-cols-4">
+      {/* <div className="w-full grid  md:grid-cols-3 lgl:grid-cols-4 sm:grid-cols-2  xl:grid-cols-4">
         <Product
           _id="1011"
           img={bestSellerOne}
@@ -49,7 +49,7 @@ const BestSellers = () => {
           badge= {false}
           des= "Beautiful Aari Work – Bridal Work . We design awesome Aari and bridal work blouses in your blouse material. This is not ready made, We do the same design on your preferred material, either we buy or you can provide your blouse material You want any change in the colors or design? No Issues, Just whatsapp. We are call you back to confirm the design details. You shall discuss the color changes or any specific designs changes. Then We shall confirm the design and cost for that before we schedule for pickup."
         />
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -47,7 +47,8 @@ export const SplOfferData = [
     price: "35.00",
     color: "Blank and White",
     badge: true,
-    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
+    description
+: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
     _id: "202",
@@ -56,7 +57,8 @@ export const SplOfferData = [
     price: "180.00",
     color: "Gray",
     badge: true,
-    des: "Beautiful Chudidhar stitching Work. We design awesome chudidhar dress stitching work in your dress material. We do the same design on your preferred material, either we buy or you can provide your chudidhar dress material You want any change in the colors or design? No Issues, Just whatsapp. We are call you back to confirm the design details. You shall discuss the color changes or any specific designs changes. Then We shall confirm the design and cost for that before we schedule for pickup.",
+    description
+: "Beautiful Chudidhar stitching Work. We design awesome chudidhar dress stitching work in your dress material. We do the same design on your preferred material, either we buy or you can provide your chudidhar dress material You want any change in the colors or design? No Issues, Just whatsapp. We are call you back to confirm the design details. You shall discuss the color changes or any specific designs changes. Then We shall confirm the design and cost for that before we schedule for pickup.",
   },
   {
     _id: "203",
@@ -65,7 +67,8 @@ export const SplOfferData = [
     price: "25.00",
     color: "Mixed",
     badge: true,
-    des: "Beautiful normal Work. We design normal work blouses in your blouse material. This is not ready made, We do the same design on your preferred material, either we buy or you can provide your blouse material You want any change in the colors or design? No Issues, Just whatsapp. We are call you back to confirm the design details. You shall discuss the color changes or any specific designs changes. Then We shall confirm the design and cost for that before we schedule for pickup.",
+    description
+: "Beautiful normal Work. We design normal work blouses in your blouse material. This is not ready made, We do the same design on your preferred material, either we buy or you can provide your blouse material You want any change in the colors or design? No Issues, Just whatsapp. We are call you back to confirm the design details. You shall discuss the color changes or any specific designs changes. Then We shall confirm the design and cost for that before we schedule for pickup.",
   },
   {
     _id: "204",
@@ -74,7 +77,8 @@ export const SplOfferData = [
     price: "220.00",
     color: "Black",
     badge: true,
-    des: "Beautiful pattu pavadai stitching Work . We design awesome pattu pavadai dress stitching work in your dress material. We do the same design on your preferred material, either we buy or you can provide your pattu pavadai dress material You want any change in the colors or design? No Issues, Just whatsapp. We are call you back to confirm the design details. You shall discuss the color changes or any specific designs changes. Then We shall confirm the design and cost for that before we schedule for pickup.",
+    description
+: "Beautiful pattu pavadai stitching Work . We design awesome pattu pavadai dress stitching work in your dress material. We do the same design on your preferred material, either we buy or you can provide your pattu pavadai dress material You want any change in the colors or design? No Issues, Just whatsapp. We are call you back to confirm the design details. You shall discuss the color changes or any specific designs changes. Then We shall confirm the design and cost for that before we schedule for pickup.",
   },
 ];
 // =================== Special Offer data End here ==============
@@ -134,7 +138,8 @@ export const paginationItems = [
     price: "180.00",
     color: "Gray",
     badge: false,
-    des: "Beautiful Aari Work – Bridal Work . We design awesome Aari and bridal work blouses in your blouse material. This is not ready made, We do the same design on your preferred material, either we buy or you can provide your blouse material You want any change in the colors or design? No Issues, Just whatsapp. We are call you back to confirm the design details. You shall discuss the color changes or any specific designs changes. Then We shall confirm the design and cost for that before we schedule for pickup.",
+    description
+: "Beautiful Aari Work – Bridal Work . We design awesome Aari and bridal work blouses in your blouse material. This is not ready made, We do the same design on your preferred material, either we buy or you can provide your blouse material You want any change in the colors or design? No Issues, Just whatsapp. We are call you back to confirm the design details. You shall discuss the color changes or any specific designs changes. Then We shall confirm the design and cost for that before we schedule for pickup.",
   },
   {
     _id: 1007,

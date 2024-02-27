@@ -93,7 +93,6 @@ const Product = (props) => {
             <span className="text-[10px]"> <del>Rs. {props.price} /-</del><br /></span> 
             <span>Rs. {props.discount} /-</span>
           </div>
-          <p className="text-[#767676] mb-2 text-[14px]">{props.color}</p>
         </div>
         <div>
           
