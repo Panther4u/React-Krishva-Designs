@@ -6,7 +6,7 @@
     const Orders = require("./models/Orders");
     const path = require('path');
     const multer = require("multer");
-    const user = require("./models/userDetails");
+    const UserInfo = require("./models/userDetails");
     const productsRoutes = require('./routes/products');
 
     const app = express();
@@ -21,6 +21,7 @@
 
     const jwt = require("jsonwebtoken");
     var nodemailer = require("nodemailer");
+const { userInfo } = require("os");
 
     const JWT_SECRET =
     "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
@@ -85,7 +86,7 @@
         // Product schema and model
         const productSchema = new mongoose.Schema({
         id: {
-            type: Number,
+            type: String,
             required: true,
             unique: true
         },
@@ -157,10 +158,16 @@
 
         // Routes
         app.use('/products', productsRoutes);
+        
+            app.get('/products/:id', async (req, res) => {
+                try {
+                const product = await Product.findById(req.params.id);
+                res.json(product);
+                } catch (error) {
+                res.status(500).json({ message: error.message });
+                }
+            });
                 
-        
-
-        
     // API for SIGNUP
 
         const User = mongoose.model("UserInfo");
@@ -189,7 +196,28 @@
             res.send({ status: "error" });
         }
         });
+
+
+        app.get("/users/:userId", async (req, res) => {
+            const { userId } = req.params;
         
+            try {
+                const user = await User.findById(userId);
+                if (!user) {
+                    return res.status(404).json({ error: "User not found" });
+                }
+        
+                res.json({
+                    _id: user._id,
+                    clientName: user.clientName,
+                    role: user.role, // Include user's role in the response
+                });
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                res.status(500).json({ error: "Internal server error" });
+            }
+        });
+
             app.post("/login-user", async (req, res) => {
                 const { email, password } = req.body;
                 try {
