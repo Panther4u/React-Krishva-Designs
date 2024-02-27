@@ -23,14 +23,14 @@ const ProductDetails = () => {
         <div className="xl:-mt-10 -mt-7 px-1">
           <Breadcrumbs title="" prevLocation={prevLocation} />
         </div>
-        <div className="w-full flex md:flex-col xl:flex-row lg:flex-row sm:flex-col  gap-8 h-full -mt-5 xl:-mt-8 pb-10 p-2">
+        <div className="w-full flex md:flex-row xl:flex-row lg:flex-row sm:flex-col  gap-8 h-full -mt-5 xl:-mt-8 pb-10 p-2">
           {/* <div className="h-full mr-5 mb-3">
             <ProductsOnSale />
           </div> */}
-          <div className="h-full xl:col-span-1">
+          <div className="h-full w-full">
             {product && (
               <img
-                className="w-full h-full object-cover rounded-md"
+                className="w-[1000px] h-full object-cover rounded-md"
                 src={product.img}
               />
             )}
