@@ -39,7 +39,7 @@ const ProductDetails = () => {
             {product && <ProductInfo product={product} />}
           </div>
         </div>
-        <div className="w-full mt-10">
+        <div className="w-full mt-10 px-3">
           <div className="h-full mb-3">
             <ProductsOnSale />
           </div>
@@ -50,3 +50,5 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+
+

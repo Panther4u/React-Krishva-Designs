@@ -24,6 +24,10 @@ const NewArrivals = () => {
       fetchProducts();
   }, []); // Empty dependency array ensures the effect runs only once after the initial render
 
+  const shuffledProducts = products.sort(() => Math.random() - 0.5);
+
+  // Take the first 6 products from the shuffled array
+  const randomProducts = shuffledProducts.slice(0, 6);
   const settings = {
     infinite: true,
     speed: 500,
@@ -70,7 +74,7 @@ const NewArrivals = () => {
     <div className="w-full">
       <Heading heading="New Arrivals" />
       <Slider {...settings}>
-      {products.map(product => (
+      {randomProducts.map(product => (
                 <Product
                     key={product._id}
                     productName={product.title}

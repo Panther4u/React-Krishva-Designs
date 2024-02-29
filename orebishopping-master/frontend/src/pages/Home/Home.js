@@ -11,14 +11,14 @@ import YearProduct from "../../components/home/YearProduct/YearProduct";
 
 const Home = () => {
   return (
-    <div className="w-full mx-auto">
+    <div className="w-full mx-auto px-2">
       <Banner />
       {/* <BannerBottom /> */}
-      <div className="max-w-container mx-auto px-1">
+      <div className="w-full mx-auto ">
         <Sale />
         <NewArrivals />
         <BestSellers />
-        <YearProduct />
+        {/* <YearProduct /> */}
         <SpecialOffers />
       </div>
     </div>

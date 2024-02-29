@@ -118,8 +118,6 @@ const { userInfo } = require("os");
 
         Product = mongoose.model("Product", productSchema);
 
-
-
         // Serve static files (including images)
         app.use(express.static('public'));
 
