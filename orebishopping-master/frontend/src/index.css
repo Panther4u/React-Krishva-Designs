@@ -349,8 +349,8 @@ nav .active li {
   bottom: 10px;
   right: 10px;
   z-index: 999;
-  width: 63px;
-  height: 63px;
+  width: 53px;
+  height: 53px;
   background: #8974FB;
   border-radius: 100%;
   cursor: pointer;
@@ -507,10 +507,9 @@ html,
   color: #167bff;
 }
 
-table,
-th,
-td {
-  border: 1px solid black !important;
+
+th{
+  background-color: rgba(106, 190, 205, 0.144);
 }
 
 
@@ -545,6 +544,11 @@ font-weight: 400;
 padding: 10px 25px;
 font-size: 14px;
 }
+
+
+
+
+
 
 
 

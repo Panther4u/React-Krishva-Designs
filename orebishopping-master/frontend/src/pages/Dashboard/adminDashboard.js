@@ -7,6 +7,11 @@ import PaginationDashBoard from '../../components/DashBoard/PaginationDashBoard'
 // import Table from '../../components/DashBoard/Table'
 import Floating from '../../components/DashBoard/Floating'
 
+import AdminHome from '../Account/adminHome'
+import AdminDasboardProducts from '../../components/DashBoard/AdminDasboardProducts'
+import AdminFooter from '../../components/DashBoard/AdminFootor'
+
+
 
 function adminDashboard() {
   return (
@@ -20,8 +25,9 @@ function adminDashboard() {
       <UserDashBorad/>
           <div className="flex flex-col  bg-white dark:bg-gray-100 mt-3">
       {/* <ProfileBanner/> */}
-            <div className="flex">
-      <PaginationDashBoard/>
+            <div className="mt-5">
+      {/* <PaginationDashBoard/> */}
+    
       {/* <Table/> */}
               {/* <div className="flex w-full mt-5 space-x-2 justify-end">
                 <button className="inline-flex items-center h-8 w-8 justify-center text-gray-400 rounded-md shadow border border-gray-200 dark:border-gray-800 leading-none">
@@ -39,11 +45,14 @@ function adminDashboard() {
                   </svg>
                 </button>
               </div> */}
+              <AdminHome/>
             </div>
+            <AdminDasboardProducts/>
           </div>
         </div>
       </div>
       <Floating/>
+      <AdminFooter/>
     </div>
 
     

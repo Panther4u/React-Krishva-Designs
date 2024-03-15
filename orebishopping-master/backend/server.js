@@ -6,8 +6,10 @@
     const Orders = require("./models/Orders");
     const path = require('path');
     const multer = require("multer");
-    const UserInfo = require("./models/userDetails");
+    // const UserInfo = require("./models/userDetails");
     const productsRoutes = require('./routes/products');
+    const categoryRoutes = require('./routes/category');
+    const productRoutes = require('./routes/productRoutes');
 
     const app = express();
     const PORT = process.env.PORT || 8000;
@@ -17,11 +19,12 @@
 
     app.set("view engine", "ejs");
     app.use(express.urlencoded({ extended: false }));
+    app.use('/products', productRoutes);
 
 
-    const jwt = require("jsonwebtoken");
+    const jwt = require('jsonwebtoken');
     var nodemailer = require("nodemailer");
-const { userInfo } = require("os");
+    const { userInfo } = require("os");
 
     const JWT_SECRET =
     "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
@@ -67,6 +70,7 @@ const { userInfo } = require("os");
             res.status(500).send("Error fetching contacts");
         }
     });
+
 
 
     // add product
@@ -167,84 +171,147 @@ const { userInfo } = require("os");
             });
                 
     // API for SIGNUP
-
-        const User = mongoose.model("UserInfo");
-        app.post("/register", async (req, res) => {
-        const { clientName, email, password, role } = req.body;
-        
-        const encryptedPassword = await bcrypt.hash(password, 10);
+    const UserDetailsSchema = new mongoose.Schema(
+        {
+          clientName: String,
+          email: { type: String, unique: true },
+          password: String,
+          role: String,
+          phone: Number,
+          profileIcon: String,
+        },
+        {
+          collection: "UserInfo",
+        }
+      );
+      
+      app.get("/getAllUser", async (req, res) => {
         try {
-            const oldUser = await User.findOne({ email });
-        
-            if (oldUser) {
-            return res.json({ error: "User Exists" });
+          const users = await User.find();
+          res.json({ success: true, data: users });
+        } catch (error) {
+          res.status(500).json({ success: false, message: error.message });
+        }
+      });
+      
+      app.post("/updateUser", async (req, res) => {
+        try {
+          const { id, clientName, email, phone, role } = req.body;
+          await User.findByIdAndUpdate(id, { clientName, email, phone, role });
+          res.json({ success: true, message: "User updated successfully" });
+        } catch (error) {
+          res.status(500).json({ success: false, message: error.message });
+        }
+      });
+      
+      app.post("/deleteUser", async (req, res) => {
+        try {
+          const { userid } = req.body;
+          await User.findByIdAndDelete(userid);
+          res.json({ success: true, message: "User deleted successfully" });
+        } catch (error) {
+          res.status(500).json({ success: false, message: error.message });
+        }
+      });
+      
+  
+      // Update user profile icon route
+        app.put('/users/:userId/update-icon', async (req, res) => {
+            const { userId } = req.params;
+            const { profileIcon } = req.body;
+            try {
+            const updatedUser = await User.findByIdAndUpdate(
+                userId,
+                { profileIcon },
+                { new: true }
+            );
+            res.json({ status: 'ok', user: updatedUser });
+            } catch (error) {
+            console.error('Error updating user profile icon:', error);
+            res.status(500).json({ status: 'error', message: 'Internal server error' });
             }
-            await User.create({
+        });
+  
+      const User = mongoose.model("UserInfo", UserDetailsSchema);
+      
+      app.post("/register", async (req, res) => {
+        const { clientName, email, password, role ,profileIcon , phone } = req.body;
+        
+        try {
+          const oldUser = await User.findOne({ email });
+          
+          if (oldUser) {
+            return res.json({ error: "User Exists" });
+          }
+          
+          const encryptedPassword = await bcrypt.hash(password, 10);
+          
+          await User.create({
             clientName,
             email,
             password: encryptedPassword,
-            // address,
-            // city,
-            // country,
-            // zip,
             role,
-            });
-            res.send({ status: "ok" });
+            profileIcon,
+            phone, 
+          });
+          
+          res.send({ status: "ok" });
         } catch (error) {
-            res.send({ status: "error" });
+          console.error(error);
+          res.status(500).send({ status: "error" });
         }
-        });
-
-
-        app.get("/users/:userId", async (req, res) => {
-            const { userId } = req.params;
+      });
+      
+      app.post("/login-user", async (req, res) => {
+        const { email, password } = req.body;
         
-            try {
-                const user = await User.findById(userId);
-                if (!user) {
-                    return res.status(404).json({ error: "User not found" });
-                }
+        try {
+          const user = await User.findOne({ email });
+          
+          if (!user) {
+            return res.status(404).json({ error: "User not found" });
+          }
+          
+          const passwordMatch = await bcrypt.compare(password, user.password);
+          
+          if (!passwordMatch) {
+            return res.status(401).json({ error: "Incorrect password" });
+          }
+          
+          const token = jwt.sign({ email: user.email, role: user.role }, JWT_SECRET, { expiresIn: "1h" });
+          
+          res.json({ status: "ok", token });
+        } catch (error) {
+          console.error("Login Error:", error);
+          res.status(500).json({ status: "error", message: "An error occurred during login." });
+        }
+      });
+      
+      app.post("/userData", async (req, res) => {
+        const { token } = req.body;
         
-                res.json({
-                    _id: user._id,
-                    clientName: user.clientName,
-                    role: user.role, // Include user's role in the response
-                });
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-                res.status(500).json({ error: "Internal server error" });
-            }
-        });
+        try {
+          const decodedToken = jwt.verify(token, JWT_SECRET);
+          const user = await User.findOne({ email: decodedToken.email });
+          
+          if (!user) {
+            return res.status(404).json({ error: "User not found" });
+          }
+          
+          res.json({ status: "ok", data: user });
+        } catch (error) {
+          if (error.name === 'TokenExpiredError') {
+            return res.status(401).json({ error: 'Token expired' });
+          }
+          console.error("Error fetching user data:", error);
+          res.status(500).json({ status: "error", message: "An error occurred while fetching user data" });
+        }
+      });
 
-            app.post("/login-user", async (req, res) => {
-                const { email, password } = req.body;
-                try {
-                // Perform authentication logic here (not included in this example)
-                // Assuming authentication is successful and user object is retrieved
-                const user = { email: email, role: "user" };
-                const token = jwt.sign(user, JWT_SECRET, { expiresIn: "1h" });
-                res.json({ status: "ok", token });
-                } catch (error) {
-                console.error("Login Error:", error);
-                res.status(500).json({ status: "error", message: "An error occurred during login." });
-                }
-            });
+
+
+
             
-            app.post("/userData", async (req, res) => {
-                const { token } = req.body;
-                try {
-                const user = jwt.verify(token, JWT_SECRET);
-                const useremail = user.email;
-                const userData = await User.findOne({ email: useremail });
-                res.json({ status: "ok", data: userData });
-                } catch (error) {
-                console.error("Error fetching user data:", error);
-                res.status(500).json({ status: "error", data: "An error occurred while fetching user data" });
-                }
-            });
-
-        
-        
         app.post("/forgot-password", async (req, res) => {
         const { email } = req.body;
         try {

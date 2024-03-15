@@ -1,10 +1,6 @@
-
 import React, { useState } from 'react';
-import ProfileDrapdown from './ProfileDrapdown';
+import ProfileDropdown from '../DashBoard/ProfileDrapdown';
 import { Link } from 'react-router-dom';
-// Ensure Bootstrap CSS is imported in your project. 
-// This can be done in your index.js or App.js file, or in the HTML.
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 function SideNav() {
   const [isOpen, setIsOpen] = useState(false); // Start with the menu closed
@@ -13,22 +9,29 @@ function SideNav() {
     setIsOpen(!isOpen);
   };
 
-  // Use Bootstrap classes along with React state to manage the collapse behavior.
   return (
     <>
-      <div className={`bg-white  ml-14  relative border-gray-200 flex-row ${isOpen ? '' : 'collapse'}`}>
+      <div className={`bg-white ml-14 relative border-gray-200 flex-row ${isOpen ? '' : 'collapse'}`}>
         {/* Menu content */}
-            <div className="flex items-center text-gray-400  absolute ">
-              <button className="block px-3.5 py-2 text-sm text-gray-100 hover:bg-gray-300 h-10 w-12 dark:text-gray-500 rounded-md flex-row items-center justify-center">
-                <Link to={"/adminDashboard"}>
-                  <svg viewBox="0 0 24 24" className="h-5" stroke="currentColor" strokeWidth={2} fill="none" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                    <polyline points="9 22 9 12 15 12 15 22" />
-                  </svg>                
-                </Link>
+        <div className="flex  items-center text-gray-400 absolute">
+          {/* Replace the buttons with your search icon */}
+          <div className={`${isOpen ? 'hidden' : ''}`}>
+            {/* Your search icon */}
+            <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              {/* Your search icon path */}
+            </svg>
+          </div>
+          {/* End of search icon */}
 
-              </button>
-              <button className="block px-3.5 py-2 text-sm text-gray-100 hover:bg-gray-300 h-10 w-12 dark:text-gray-500 rounded-md flex-row items-center justify-center">
+          <button className="block px-3.5 py-2 text-sm text-gray-100 hover:bg-gray-300 h-10 w-12 dark:text-gray-500 rounded-md flex-row items-center justify-center">
+            <Link to="/adminDashboard">
+              <svg viewBox="0 0 24 24" className="h-5" stroke="currentColor" strokeWidth={2} fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+            </Link>
+          </button>
+          <button className="block px-3.5 py-2 text-sm text-gray-100 hover:bg-gray-300 h-10 w-12 dark:text-gray-500 rounded-md flex-row items-center justify-center">
                 <Link to={"/addproduct"}>
                   <svg viewBox="0 0 24 24" className="h-5" stroke="currentColor" strokeWidth={2} fill="none" strokeLinecap="round" strokeLinejoin="round">
                     <rect x={2} y={7} width={20} height={14} rx={2} ry={2} />
@@ -54,7 +57,8 @@ function SideNav() {
             </div>
         </div>
 
-      <button className="w-10 h-10 flex items-center justify-center  absolute px-2" onClick={toggleMenu}>
+
+      <button className="w-10 h-10 flex items-center justify-center absolute px-2" onClick={toggleMenu}>
         {isOpen ? (
           <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -65,11 +69,11 @@ function SideNav() {
           </svg>
         )}
       </button>
+      
       {/* Other content */}
-      <ProfileDrapdown/>
+      <ProfileDropdown />
     </>
   );
 }
 
 export default SideNav;
-

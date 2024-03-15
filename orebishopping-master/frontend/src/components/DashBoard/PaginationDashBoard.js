@@ -29,7 +29,7 @@
     return (
         <>
             <div className="flex w-full mt-5">
-        <button className="inline-flex mr-3 items-center h-8 pl-2.5 pr-2 rounded-md shadow text-gray-700 dark:text-gray-400 dark:border-gray-800 border border-gray-200 leading-none py-0" onClick={handlePrevPage}>
+        {/* <button className="inline-flex mr-3 items-center h-8 pl-2.5 pr-2 rounded-md shadow text-gray-700 dark:text-gray-400 dark:border-gray-800 border border-gray-200 leading-none py-0" onClick={handlePrevPage}>
             <svg viewBox="0 0 24 24" className="w-4 mr-2 text-gray-400 dark:text-gray-600" stroke="currentColor" strokeWidth={2} fill="none" strokeLinecap="round" strokeLinejoin="round">
             <rect x={3} y={4} width={18} height={18} rx={2} ry={2} />
             <line x1={16} y1={2} x2={16} y2={6} />
@@ -40,7 +40,7 @@
             <svg viewBox="0 0 24 24" className="w-4 ml-1.5 text-gray-400 dark:text-gray-600" stroke="currentColor" strokeWidth={2} fill="none" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="6 9 12 15 18 9" />
             </svg>
-        </button>
+        </button> */}
         <div className="flex justify-end items-center space-x-5">
                 <button onClick={toggleDropdown} className="relative inline-flex mr-3 items-center h-8 pl-2.5 pr-2 rounded-md shadow text-gray-700 dark:text-gray-400 dark:border-gray-800 border border-gray-200 leading-none py-0">
                     <span className="ml-2 items-center">Select category</span>
@@ -49,7 +49,7 @@
                     </svg>
                 </button>
                 {isDropdownOpen && (
-                    <div className="absolute index-2 mt-56 left-36 w-48 rounded-md py-1 dark:bg-gray-200 shadow bg-white ">
+                    <div className="absolute index-1 left-[0] w-48 mt-56 rounded-md py-1 dark:bg-gray-200 shadow bg-white ">
                             <li className="block px-4 py-2 text-gray-900 hover:bg-gray-300">Blouse Design</li>
                             <li className="block px-4 py-2 text-gray-900 hover:bg-gray-300">Chudi Design</li>
                             <li className="block px-4 py-2 text-gray-900 hover:bg-gray-300">Lehenga Design</li>

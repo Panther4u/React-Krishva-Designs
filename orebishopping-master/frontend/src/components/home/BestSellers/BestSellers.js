@@ -28,7 +28,7 @@ const BestSellers = () => {
     return () => clearTimeout(timer);
   }, [currentIndex, products]);
 
-  const visibleProducts = products.slice(currentIndex, currentIndex + 5);
+  const visibleProducts = products.slice(currentIndex, currentIndex + 6);
 
 
   return (

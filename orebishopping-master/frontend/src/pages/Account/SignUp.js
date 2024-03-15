@@ -108,6 +108,7 @@ const SignUp = () => {
             email,
             password,
             role,
+            phone,
           }),
         });
   

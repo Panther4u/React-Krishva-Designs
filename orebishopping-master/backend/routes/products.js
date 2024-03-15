@@ -15,5 +15,18 @@ router.get('/:category', async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 });
+// Route to get category counts
+router.get('/categoryCounts', async (req, res) => {
+    try {
+      const categoryCounts = await Product.aggregate([
+        { $group: { _id: '$category', count: { $sum: 1 } } },
+      ]);
+      res.json(categoryCounts);
+    } catch (error) {
+      console.error('Error getting category counts:', error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  });
+  
 
 module.exports = router;

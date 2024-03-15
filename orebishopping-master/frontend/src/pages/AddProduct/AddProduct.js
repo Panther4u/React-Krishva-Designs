@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import ProductList from '../../components/Upload/FeatchProducts';
 import toast from 'react-hot-toast';
+import SideNav from '../../components/DashBoard/Sidebar';
 
 
 function AddProduct() {
@@ -89,6 +90,10 @@ function AddProduct() {
     return (
 
         <>
+        <div className='w-full p-2 fixed bg-white '>
+          <SideNav/>
+        </div>
+          
             <div className="w-full h-auto flex xl:flex-col lg:flex-col md:flex-col sm:flex-col py-10 right-0 items-center top-0">
                 <form  className="w-full lgl:w-[550px] md:w-[500px] h-auto flex items-center justify-center">
                     <div className="px-6 py-4 w-full h-auto flex flex-col items-center justify-center overflow-y-scroll scrollbar-thin scrollbar-thumb-primeColor">
